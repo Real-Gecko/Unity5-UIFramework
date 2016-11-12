@@ -1,6 +1,7 @@
 ﻿/*
- * This file is subject to the included LICENSE.md file. 
- */
+ * UI Framework licensed under BSD 3-clause license
+ * https://github.com/Real-Gecko/Unity5-UIFramework/blob/master/LICENSE.md
+*/
 
 using System;
 using UnityEngine;
@@ -8,14 +9,14 @@ using UnityEngine;
 namespace UIFramework
 {
 	// Default layouting sucks
-	public class Layout
+	internal class Layout
 	{
 		/// <summary>
 		/// Styled label with white text color.
 		/// </summary>
 		/// <param name="text">Text.</param>
 		/// <param name="options">Options.</param>
-		public static void Label(string text, params GUILayoutOption[] options) {
+		internal static void Label(string text, params GUILayoutOption[] options) {
 			Styles.label.normal.textColor = Color.white;
 			Styles.label.alignment = TextAnchor.MiddleLeft;
 			Styles.label.stretchWidth = false;
@@ -28,7 +29,7 @@ namespace UIFramework
 		/// <param name="text">Text.</param>
 		/// <param name="color">Color.</param>
 		/// <param name="options">Options.</param>
-		public static void Label(string text, Color color, params GUILayoutOption[] options) {
+		internal static void Label(string text, Color color, params GUILayoutOption[] options) {
 			Styles.label.normal.textColor = color;
 			Styles.label.alignment = TextAnchor.MiddleLeft;
 			Styles.label.stretchWidth = false;
@@ -40,7 +41,7 @@ namespace UIFramework
 		/// </summary>
 		/// <param name="text">Text.</param>
 		/// <param name="options">Options.</param>
-		public static void LabelCentered(string text, params GUILayoutOption[] options) {
+		internal static void LabelCentered(string text, params GUILayoutOption[] options) {
 			Styles.label.normal.textColor = Color.white;
 			Styles.label.alignment = TextAnchor.MiddleCenter;
 			Styles.label.stretchWidth = true;
@@ -53,7 +54,7 @@ namespace UIFramework
 		/// <param name="text">Text.</param>
 		/// <param name="color">Color.</param>
 		/// <param name="options">Options.</param>
-		public static void LabelCentered(string text, Color color, params GUILayoutOption[] options) {
+		internal static void LabelCentered(string text, Color color, params GUILayoutOption[] options) {
 			Styles.label.normal.textColor = color;
 			Styles.label.alignment = TextAnchor.MiddleCenter;
 			Styles.label.stretchWidth = true;
@@ -65,7 +66,7 @@ namespace UIFramework
 		/// </summary>
 		/// <param name="text">Text.</param>
 		/// <param name="options">Options.</param>
-		public static void LabelRight(string text, params GUILayoutOption[] options) {
+		internal static void LabelRight(string text, params GUILayoutOption[] options) {
 			Styles.label.normal.textColor = Color.white;
 			Styles.label.alignment = TextAnchor.MiddleRight;
 			Styles.label.stretchWidth = false;
@@ -78,7 +79,7 @@ namespace UIFramework
 		/// <param name="text">Text.</param>
 		/// <param name="color">Color.</param>
 		/// <param name="options">Options.</param>
-		public static void LabelRight(string text, Color color, params GUILayoutOption[] options) {
+		internal static void LabelRight(string text, Color color, params GUILayoutOption[] options) {
 			Styles.label.normal.textColor = color;
 			Styles.label.alignment = TextAnchor.MiddleRight;
 			Styles.label.stretchWidth = false;
@@ -90,7 +91,7 @@ namespace UIFramework
 		/// </summary>
 		/// <param name="text">Text.</param>
 		/// <param name="options">Options.</param>
-		public static bool Button(string text, params GUILayoutOption[] options) {
+		internal static bool Button(string text, params GUILayoutOption[] options) {
 			Styles.button.normal.textColor = Color.white;
 			Styles.button.alignment = TextAnchor.MiddleCenter;
 			Styles.button.stretchWidth = true;
@@ -103,7 +104,7 @@ namespace UIFramework
 		/// <param name="text">Text.</param>
 		/// <param name="color">Color.</param>
 		/// <param name="options">Options.</param>
-		public static bool Button(string text, Color color, params GUILayoutOption[] options) {
+		internal static bool Button(string text, Color color, params GUILayoutOption[] options) {
 			Styles.button.normal.textColor = color;
 			Styles.button.alignment = TextAnchor.MiddleCenter;
 			Styles.button.stretchWidth = true;
@@ -116,7 +117,7 @@ namespace UIFramework
 		/// <returns><c>true</c>, if left was buttoned, <c>false</c> otherwise.</returns>
 		/// <param name="text">Text.</param>
 		/// <param name="options">Options.</param>
-		public static bool ButtonLeft(string text, params GUILayoutOption[] options) {
+		internal static bool ButtonLeft(string text, params GUILayoutOption[] options) {
 			Styles.button.normal.textColor = Color.white;
 			Styles.button.alignment = TextAnchor.MiddleLeft;
 			Styles.button.stretchWidth = true;
@@ -130,7 +131,7 @@ namespace UIFramework
 		/// <param name="text">Text.</param>
 		/// <param name="color">Color.</param>
 		/// <param name="options">Options.</param>
-		public static bool ButtonLeft(string text, Color color, params GUILayoutOption[] options) {
+		internal static bool ButtonLeft(string text, Color color, params GUILayoutOption[] options) {
 			Styles.button.normal.textColor = color;
 			Styles.button.alignment = TextAnchor.MiddleLeft;
 			Styles.button.stretchWidth = true;
@@ -142,7 +143,7 @@ namespace UIFramework
 		/// </summary>
 		/// <param name="label">Label.</param>
 		/// <param name="text">Text.</param>
-		public static void LabelAndText(string label, string text) {
+		internal static void LabelAndText(string label, string text) {
 			GUILayout.BeginHorizontal ();
 			Label (label + ": ", Palette.blue);
 			Label (text, Color.white);
@@ -153,7 +154,7 @@ namespace UIFramework
 		/// Margin with the specified width.
 		/// </summary>
 		/// <param name="width">Width.</param>
-		public static void Margin(int width) {
+		internal static void Margin(int width) {
 			GUILayout.Label ("", Styles.label, GUILayout.Width(width));
 		}
 
@@ -163,14 +164,14 @@ namespace UIFramework
 		/// <returns>The scroll view.</returns>
 		/// <param name="scrollPos">Scroll position.</param>
 		/// <param name="options">Options.</param>
-		public static Vector2 BeginScrollView(Vector2 scrollPos, params GUILayoutOption[] options) {
+		internal static Vector2 BeginScrollView(Vector2 scrollPos, params GUILayoutOption[] options) {
 			return GUILayout.BeginScrollView (scrollPos, false, true, Styles.verticalScrollbarThumb, Styles.verticalScrollbarThumb, Styles.scrollView, options);
 		}
 
 		/// <summary>
 		/// Horizontal separator of the specified height
 		/// </summary>
-		public static void HR(int height = 20) {
+		internal static void HR(int height = 20) {
 			GUILayout.Label ("", Styles.label, GUILayout.Height(height));
 		}
 
@@ -182,11 +183,11 @@ namespace UIFramework
 		/// <param name="captions">Captions.</param>
 		/// <param name="count">Count.</param>
 		/// <param name="options">Options.</param>
-		public static int SelectionGrid(int selected, string[] captions, int count, params GUILayoutOption[] options) {
+		internal static int SelectionGrid(int selected, string[] captions, int count, params GUILayoutOption[] options) {
 			return GUILayout.SelectionGrid (selected, captions, count, Styles.selectionGrid, options);
 		}
 
-		public static bool Toggle(bool value, string text, params GUILayoutOption[] options) {
+		internal static bool Toggle(bool value, string text, params GUILayoutOption[] options) {
 			string prefix = value ? "● " : "○ ";
 			return GUILayout.Toggle (value, prefix + text, Styles.toggle, options);
 		}
@@ -199,7 +200,7 @@ namespace UIFramework
 		/// <param name="func">Func.</param>
 		/// <param name="title">Title.</param>
 		/// <param name="options">Options.</param>
-		public static Rect Window(int id, Rect screenRect, GUI.WindowFunction func, string title, params GUILayoutOption[] options) {
+		internal static Rect Window(int id, Rect screenRect, GUI.WindowFunction func, string title, params GUILayoutOption[] options) {
 			// Fix rect width and height not being integers to avoid blurry font rendering
 			screenRect.width = (float)Math.Floor (screenRect.width);
 			screenRect.height = (float)Math.Floor (screenRect.height);

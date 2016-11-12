@@ -41,6 +41,7 @@
     <Compile Include="Layout.cs" />
     <Compile Include="Palette.cs" />
     <Compile Include="Styles.cs" />
+    <Compile Include="Offsets.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

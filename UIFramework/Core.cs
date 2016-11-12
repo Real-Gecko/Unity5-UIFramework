@@ -1,6 +1,7 @@
 ﻿/*
- * This file is subject to the included LICENSE.md file. 
- */
+ * UI Framework licensed under BSD 3-clause license
+ * https://github.com/Real-Gecko/Unity5-UIFramework/blob/master/LICENSE.md
+*/
 
 using System;
 using UnityEngine;
@@ -26,10 +27,6 @@ namespace UIFramework
 			_instance = this;
 		}
 
-//		public void Start() {
-//			DontDestroyOnLoad (this);
-//		}
-
 		public void OnDestroy() {
 			if (_instance == this)
 				_instance = null;
@@ -40,6 +37,8 @@ namespace UIFramework
 				return;
 			Palette.InitPalette ();
 			Styles.InitStyles ();
+//			Styles.OverrideKSP ();
+//			Styles.OverrideUnity ();
 			skinInitialized = true;
 			Destroy (this); // Quit after initialized
 		}
