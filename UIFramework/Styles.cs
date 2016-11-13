@@ -1,8 +1,7 @@
-﻿/*
+/*
  * UI Framework licensed under BSD 3-clause license
- * https://github.com/Real-Gecko/Unity5-Overdriveramework/blob/master/LICENSE.md
+ * https://github.com/Real-Gecko/Unity5-UIFramework/blob/master/LICENSE.md
 */
-
 
 using System;
 using UnityEngine;
@@ -41,10 +40,35 @@ namespace UIFramework
 		internal static FontStyle fontStyle = FontStyle.Bold;
 
 		internal static void InitStyles() {
+			// Defaults
+
+			// normal, hover, active, onNormal, onHover, onActive, focused, onFocused
+			// --- background = null
+			// --- textColor = RGBA(0.000, 0.000, 0.000, 1.000)
+			//
+			// border = RectOffset (l:0 r:0 t:0 b:0)
+			// margin = RectOffset (l:0 r:0 t:0 b:0)
+			// padding = RectOffset (l:0 r:0 t:0 b:0)
+			// overflow = RectOffset (l:0 r:0 t:0 b:0)
+			// clipOffset = Vector2 (0.0, 0.0)
+			//
+			// font = null
+			// imagePosition = ImagePosition.ImageLeft
+			// alignment = TextAnchor.UpperLeft
+			// wordWrap = false
+			// clipping = TextClipping.Overflow
+			// contentOffset = Vector2 (0.0, 0.0)
+			// fixedWidth = 0
+			// fixedHeight = 0
+			// stretchWidth = true
+			// stretchHeight = false
+			// fontSize = 0
+			// fontStyle = FontStyle.Normal
+			// richText = true
 
 			// Common text style
 			textCommon = new GUIStyle();
-			textCommon.name = "OverdriveTextCommon";
+			textCommon.name = "UIFTextCommon";
 
 			textCommon.font = GUI.skin.font;
 			textCommon.fontSize = fontSize;
@@ -52,13 +76,15 @@ namespace UIFramework
 
 			textCommon.normal.textColor = Palette.white;
 
+			textCommon.margin = Offsets.square2;
+			textCommon.padding = Offsets.square4;
+
 			// Box style
 			box = new GUIStyle(textCommon);
-			box.name = "OverdriveBox";
-			box.normal.background = Palette.tGrimGray;
+			box.name = "UIFBox";
 
-			box.border		= Offsets.square6;
-			box.margin		= Offsets.horizontal4;
+			box.normal.background = Palette.tGray20;
+
 			box.alignment = TextAnchor.MiddleCenter;
 
 			box.wordWrap = true;
@@ -66,348 +92,240 @@ namespace UIFramework
 
 			// Label style
 			label = new GUIStyle (textCommon);
-			label.name = "OverdriveLabel";
+			label.name = "UIFLabel";
 
 			label.normal.background = Palette.tTransparent;
-
-			label.margin		= Offsets.square4;
-			label.padding		= Offsets.vertical3;
 
 			label.wordWrap		= true;
 			label.stretchWidth	= false;
 
 			// TextField style
 			textField = new GUIStyle(textCommon);
-			textField.name = "OverdriveTextField";
+			textField.name = "UIFTextField";
 
-			textField.normal.background = Palette.tGrimGray;
+			textField.normal.background = Palette.tGray10;
 			textField.normal.textColor = Palette.dimWhite;
 
-			textField.hover.background = Palette.tGrimGray;
-			textField.hover.textColor = Palette.yellow;
+			textField.hover.background = Palette.tGray10;
+			textField.hover.textColor = Palette.white;
 
-			textField.onNormal.background = Palette.tGrimGray;
+			textField.onNormal.background = Palette.tGray10;
 			textField.onHover.textColor = Palette.white;
 
-			textField.focused.background = Palette.tGrimGray;
+			textField.focused.background = Palette.tGray10;
 			textField.focused.textColor = Palette.white;
-
-			textField.border = Offsets.square4;
-			textField.margin = Offsets.square2;
-			textField.padding = new RectOffset (9, 3, 3, 3);
-			textField.overflow = new RectOffset (0, 0, 2, 2);
 
 			textField.imagePosition = ImagePosition.TextOnly;
 			textField.clipping = TextClipping.Clip;
-			textField.fixedWidth = 0;
-			textField.fixedHeight = 0;
-			textField.stretchWidth = true;
-			textField.stretchHeight = false;
 
 			// TextArea style
-			textArea = new GUIStyle(textCommon);
-			textArea.name = "OverdriveTextArea";
+			textArea = new GUIStyle(textField);
+			textArea.name = "UIFTextArea";
 
-			textArea.normal.background = Palette.tDarkGray;
-			textArea.normal.textColor = Palette.dimWhite;
-
-			textArea.hover.textColor = Palette.yellow;
-
-			textArea.onNormal.textColor = Palette.white;
-
-			textArea.border = Offsets.square6;
-			textArea.margin = Offsets.horizontal4;
-			textArea.padding = Offsets.square8;
 			textArea.wordWrap = true;
-			textArea.clipping = TextClipping.Clip;
 
 			// Button style
 			button = new GUIStyle (textCommon);
-			button.name = "OverdriveButton";
-			button.normal.background = Palette.tGray;
+			button.name = "UIFButton";
+
+			button.normal.background = Palette.tGray40;
 			button.normal.textColor = Palette.white;
 
-			button.hover.background = Palette.tLightGray;
+			button.hover.background = Palette.tGray50;
 			button.hover.textColor = Palette.yellow;
 
-			button.active.background = Palette.tGrimGray;
+			button.active.background = Palette.tGray10;
 			button.active.textColor = Palette.yellow;
 
-			button.onNormal.background = Palette.tGrimGray;
+			button.onNormal.background = Palette.tGray10;
 			button.onNormal.textColor = Palette.white;
 
-			button.onHover.background = Palette.tLightGray;
+			button.onHover.background = Palette.tGray10;
 			button.onHover.textColor = Palette.yellow;
 
-			button.onActive.background = Palette.tGrimGray;
-			button.onActive.textColor = Palette.white;
+			button.onActive.background = Palette.tGray10;
+			button.onActive.textColor = Palette.yellow;
 
-			button.border = new RectOffset (15, 15, 8, 8);
-			button.margin = Offsets.square2;
-			button.padding = new RectOffset(4, 4, 6, 6);
 			button.alignment = TextAnchor.MiddleCenter;
 
 			// Toggle
-			toggle = new GUIStyle (textCommon);
-			toggle.name = "OverdriveToggle";
+			toggle = new GUIStyle (button);
+			toggle.name = "UIFToggle";
 
-			toggle.normal.background = Palette.tDarkGray;
-			toggle.normal.textColor = Palette.red;
+			toggle.normal.background = Palette.tDarkRed;
+			toggle.normal.textColor = Palette.white;
 
-			toggle.hover.background = Palette.tGray;
-			toggle.hover.textColor = Palette.red;
+			toggle.hover.background = Palette.tDarkRed;
+			toggle.hover.textColor = Palette.white;
 
-			toggle.active.background = Palette.tDarkGray;
-			toggle.active.textColor = Palette.green;
+			toggle.active.background = Palette.tDarkRed;
+			toggle.active.textColor = Palette.white;
 
-			toggle.onNormal.background = Palette.tGrimGray;
-			toggle.onNormal.textColor = Palette.green;
+			toggle.onNormal.background = Palette.tDarkGreen;
+			toggle.onNormal.textColor = Palette.white;
 
-			toggle.onHover.background = Palette.tGrimGray;
-			toggle.onHover.textColor = Palette.green;
+			toggle.onHover.background = Palette.tDarkGreen;
+			toggle.onHover.textColor = Palette.white;
 
-			toggle.onActive.background = Palette.tGrimGray;
-			toggle.onActive.textColor = Palette.green;
+			toggle.onActive.background = Palette.tDarkGreen;
+			toggle.onActive.textColor = Palette.white;
 
 			toggle.border = new RectOffset (15, 15, 8, 8);
-			toggle.margin = Offsets.square2;
-			toggle.padding = new RectOffset(4, 4, 6, 6);
-//			toggle.overflow = new RectOffset (-1, 0, -4, 0);
 
 			toggle.clipping = TextClipping.Clip;
-//			toggle.contentOffset = new Vector2 (22.6f, 5);
-//			toggle.fixedWidth = 30;
-//			toggle.fixedHeight = 30;
-//			toggle.stretchWidth = false;
 
 			// Window style
 			window = new GUIStyle(textCommon);
-			window.name = "OverdriveWindow";
+			window.name = "UIFWindow";
 
 			window.normal.background = Palette.tBorder;
+//			window.normal.background = Palette.tGray30;
 			window.normal.textColor = Palette.yellow;
 
-			window.active.background = Palette.tBorder;
-			window.active.textColor = Palette.yellow;
-
-			window.onNormal.background = Palette.tBorder;
-			window.onNormal.textColor = Palette.yellow;
-
-			window.focused.background = Palette.tBorder;
-			window.focused.textColor = Palette.yellow;
-
 			window.border = Offsets.square2;
-			window.padding = new RectOffset (8, 6, 28, 8);
+			window.padding = new RectOffset (8, 8, 28, 8);
 
 			window.alignment = TextAnchor.UpperCenter;
 			window.clipping = TextClipping.Clip;
-			window.contentOffset = new Vector2 (0.0f, -20.0f);
+			window.contentOffset = new Vector2 (0.0f, -22.0f);
 			window.fontSize = 16;
 
 			// HorizontalSlider
 			horizontalSlider = new GUIStyle();
-			horizontalSlider.name = "OverdriveHorizontalSlider";
+			horizontalSlider.name = "UIFHorizontalSlider";
 
-			horizontalSlider.normal.background = Palette.tGrimGray;
-			horizontalSlider.normal.textColor = Palette.transparent;
+			horizontalSlider.normal.background = Palette.tGray10;
 
-			horizontalSlider.border = Offsets.square4;
 			horizontalSlider.margin = Offsets.square2;
-			horizontalSlider.overflow = new RectOffset (0, 0, 2, 2);
+			horizontalSlider.padding = Offsets.square2;
+
 			horizontalSlider.imagePosition = ImagePosition.ImageOnly;
 			horizontalSlider.clipping = TextClipping.Clip;
-			horizontalSlider.fixedHeight = 12;
+
+			horizontalSlider.fixedHeight = 17;
 
 			// HorizontalSliderThumb
 			horizontalSliderThumb = new GUIStyle();
-			horizontalSliderThumb.name = "OverdriveHorizontalSliderThumb";
+			horizontalSliderThumb.name = "UIFHorizontalSliderThumb";
 
-			horizontalSliderThumb.normal.background = Palette.tDarkGray;
-			horizontalSliderThumb.normal.textColor = Palette.transparent;
+			horizontalSliderThumb.normal.background = Palette.tGray30;
 
-			horizontalSliderThumb.hover.background = Palette.tGray;
-			horizontalSliderThumb.hover.textColor = Palette.transparent;
+			horizontalSliderThumb.hover.background = Palette.tGray40;
 
-			horizontalSliderThumb.active.background = Palette.tLightGray;
-			horizontalSliderThumb.active.textColor = Palette.transparent;
-
-			horizontalSliderThumb.border = Offsets.horizontal4;
-			horizontalSliderThumb.padding = Offsets.horizontal7;
-			horizontalSliderThumb.overflow = new RectOffset (-1, -1, 0, 0);
-
-			horizontalSliderThumb.imagePosition = ImagePosition.ImageOnly;
-			horizontalSliderThumb.clipping = TextClipping.Clip;
-			horizontalSliderThumb.fixedWidth = 28.1975f;
-			horizontalSliderThumb.fixedHeight = 12;
+			horizontalSliderThumb.fixedWidth = 30;
+			horizontalSliderThumb.fixedHeight = 13;
 
 			//Vertical slider
 			verticalSlider = new GUIStyle();
-			verticalSlider.name = "OverdriveVerticalSlider";
+			verticalSlider.name = "UIFVerticalSlider";
 
-			verticalSlider.normal.background = Palette.tGrimGray;
+			verticalSlider.normal.background = Palette.tGray10;
 			verticalSlider.normal.textColor = Palette.transparent;
 
-			verticalSlider.border = Offsets.vertical3;
 			verticalSlider.margin = Offsets.square2;
-			verticalSlider.padding = new RectOffset (0, 0, -1, -1);
-			verticalSlider.overflow = new RectOffset (-2, -3, 0, 0);
+			verticalSlider.padding = Offsets.square2;
 
-			verticalSlider.fixedWidth = 12;
+			horizontalSlider.imagePosition = ImagePosition.ImageOnly;
+			horizontalSlider.clipping = TextClipping.Clip;
+
+			verticalSlider.fixedWidth = 17;
 			verticalSlider.stretchWidth = false;
 			verticalSlider.stretchHeight = true;
 
 			// Vertical slider thumb
 			verticalSliderThumb = new GUIStyle();
-			verticalSliderThumb.name = "OverdriveVerticalSliderThumb";
+			verticalSliderThumb.name = "UIFVerticalSliderThumb";
 
-			verticalSliderThumb.normal.background = Palette.tDarkGray;
-			verticalSliderThumb.normal.textColor = Palette.transparent;
+			verticalSliderThumb.normal.background = Palette.tGray30;
 
-			verticalSliderThumb.hover.background = Palette.tGray;
-			verticalSliderThumb.hover.textColor = Palette.transparent;
+			verticalSliderThumb.hover.background = Palette.tGray40;
 
-			verticalSliderThumb.active.background = Palette.tLightGray;
-			verticalSliderThumb.active.textColor = Palette.transparent;
-
-			verticalSliderThumb.padding = Offsets.vertical7;
-			verticalSliderThumb.overflow = new RectOffset (0, 0, -1, -1);
-			verticalSliderThumb.clipping = TextClipping.Clip;
-
-			verticalSliderThumb.fixedWidth = 12;
-			verticalSliderThumb.fixedHeight = 0;
-
-			verticalSliderThumb.stretchWidth = false;
-			verticalSliderThumb.stretchHeight = true;
+			verticalSliderThumb.fixedWidth = 13;
+			verticalSliderThumb.fixedHeight = 30;
 
 			// Horizontal scroll bar
-			horizontalScrollbar = new GUIStyle(textCommon);
-			horizontalScrollbar.name = "OverdriveHorizontalScrollbar";
+			horizontalScrollbar = new GUIStyle();
+			horizontalScrollbar.name = "UIFHorizontalScrollbar";
 
-			horizontalScrollbar.normal.background = Palette.tGrimGray;
+			horizontalScrollbar.normal.background = Palette.tGray10;
 			horizontalScrollbar.normal.textColor = Palette.transparent;
 
-			horizontalScrollbar.border = Offsets.horizontal9;
 			horizontalScrollbar.margin = Offsets.square2;
+			horizontalScrollbar.padding = Offsets.square2;
 
 			horizontalScrollbar.imagePosition = ImagePosition.ImageOnly;
 			horizontalScrollbar.clipping = TextClipping.Clip;
 
-			horizontalScrollbar.fixedHeight = 15;
+			horizontalScrollbar.fixedHeight = 19;
 
 			// Horizontal Scrollbar Thumb
 			horizontalScrollbarThumb = new GUIStyle();
-			horizontalScrollbarThumb.normal.background = Palette.tDarkGray;
-			horizontalScrollbarThumb.normal.textColor = Palette.transparent;
+			horizontalScrollbarThumb.name = "UIFHorizontalScrollbarThumb";
 
-			horizontalScrollbarThumb.border = Offsets.square6;
-			horizontalScrollbarThumb.padding = Offsets.horizontal6;
-			horizontalScrollbarThumb.overflow = new RectOffset (0, 0, -1, -1);
+			horizontalScrollbarThumb.normal.background = Palette.tGray30;
 
-			horizontalScrollbarThumb.clipping = TextClipping.Clip;
-			horizontalScrollbarThumb.fixedHeight = 13;
+			horizontalScrollbarThumb.hover.background = Palette.tGray40;
+
+			horizontalScrollbarThumb.fixedHeight = 15;
 
 			// Horizontal scrollbar left button
 			horizontalScrollbarLeftButton = new GUIStyle ();
-			horizontalScrollbarLeftButton.name = "OverdriveHorizontalScrollbarLeftButton";
-
-			horizontalScrollbarLeftButton.clipping = TextClipping.Clip;
+			horizontalScrollbarLeftButton.name = "UIFHorizontalScrollbarLeftButton";
 
 			// Horizontal scrollbar right button
 			horizontalScrollbarRightButton = new GUIStyle ();
-			horizontalScrollbarRightButton.name = "OverdriveHorizontalScrollbarRightButton";
-
-			horizontalScrollbarRightButton.clipping = TextClipping.Clip;
+			horizontalScrollbarRightButton.name = "UIFHorizontalScrollbarRightButton";
 
 			// Vertical scrollbar
 			verticalScrollbar = new GUIStyle();
-			verticalScrollbar.name = "OverdriveVerticalScrollbar";
+			verticalScrollbar.name = "UIFVerticalScrollbar";
 
-			verticalScrollbar.normal.background = Palette.tGrimGray;
+			verticalScrollbar.normal.background = Palette.tGray10;
 
-			verticalScrollbar.border = Offsets.vertical9;
 			verticalScrollbar.margin = Offsets.square2;
-			verticalScrollbar.padding = new RectOffset(0, 0, 1, 1);
+			verticalScrollbar.padding = Offsets.square2;
 
 			verticalScrollbar.clipping = TextClipping.Clip;
-			verticalScrollbar.fixedWidth = 15;
+			verticalScrollbar.fixedWidth = 19;
 
 			// Vertical scrollbar thumb
 			verticalScrollbarThumb = new GUIStyle();
-			verticalScrollbarThumb.name = "OverdriveVerticalScrollbarThumb";
+			verticalScrollbarThumb.name = "UIFVerticalScrollbarThumb";
 
-			verticalScrollbarThumb.normal.background = Palette.tGray;
+			verticalScrollbarThumb.normal.background = Palette.tGray30;
 
-			verticalScrollbarThumb.border = Offsets.square6;
-			verticalScrollbarThumb.padding = Offsets.vertical6;
-			verticalScrollbarThumb.overflow = new RectOffset (-1, -1, 0, 0);
-
-			verticalScrollbarThumb.imagePosition = ImagePosition.ImageOnly;
-			verticalScrollbarThumb.clipping = TextClipping.Clip;
+			verticalScrollbarThumb.hover.background = Palette.tGray40;
 
 			verticalScrollbarThumb.fixedWidth = 15;
 			verticalScrollbarThumb.stretchWidth = false;
 
 			// verticalScrollbarUpButton
-			verticalScrollbarUpButton = new GUIStyle(textCommon);
-			verticalScrollbarUpButton.name = "OverdriveVerticalScrollbarUpButton";
-
-			verticalScrollbarUpButton.clipping = TextClipping.Clip;
+			verticalScrollbarUpButton = new GUIStyle();
+			verticalScrollbarUpButton.name = "UIFVerticalScrollbarUpButton";
 
 			//verticalScrollbarDownButton
-			verticalScrollbarDownButton = new GUIStyle (textCommon);
-			verticalScrollbarDownButton.name = "OverdriveVerticalScrollbarDownButton";
-
-			verticalScrollbarDownButton.clipping = TextClipping.Clip;
+			verticalScrollbarDownButton = new GUIStyle ();
+			verticalScrollbarDownButton.name = "UIFVerticalScrollbarDownButton";
 
 			// Scrollview style
 			scrollView = new GUIStyle(textCommon);
-			scrollView.name = "OverdriveScrollView";
-			scrollView.normal.background = Palette.tGrimGray;
+			scrollView.name = "UIFScrollView";
 
-			scrollView.border = Offsets.square8;
-			scrollView.margin = new RectOffset (6, 3, 0, 0);
-			scrollView.padding = new RectOffset(11, 0, 0, -23);
-			scrollView.overflow = new RectOffset (0, 0, 0, 1);
+			scrollView.normal.background = Palette.tGray20;
+
+			scrollView.padding = Offsets.square2;
 
 			scrollView.clipping = TextClipping.Clip;
 
 			// Selection grid buttons
 			selectionGrid = new GUIStyle (button);
-			selectionGrid.name = "OverdriveSelectionGrid";
+			selectionGrid.name = "UIFSelectionGrid";
 			selectionGrid.alignment = TextAnchor.MiddleCenter;
-
-			selectionGrid.normal.textColor = Palette.darkGray;
-			selectionGrid.normal.textColor = Palette.dimWhite;
-
-			selectionGrid.onNormal.background = Palette.tGrimGray;
-			selectionGrid.onNormal.textColor = Palette.green;
 		}
 
-		internal static void OverrideKSP() {
-			HighLogic.Skin.box = box;
-			HighLogic.Skin.label = label;
-			HighLogic.Skin.textField = textField;
-			HighLogic.Skin.textArea = textArea;
-			HighLogic.Skin.button = button;
-			HighLogic.Skin.toggle = toggle;
-			HighLogic.Skin.window	= window;
-			HighLogic.Skin.horizontalSlider = horizontalSlider;
-			HighLogic.Skin.horizontalSliderThumb = horizontalSliderThumb;
-			HighLogic.Skin.verticalSlider = verticalSlider;
-			HighLogic.Skin.verticalSliderThumb = verticalSliderThumb;
-			HighLogic.Skin.horizontalScrollbar = horizontalScrollbar;
-			HighLogic.Skin.horizontalScrollbarThumb = horizontalScrollbarThumb;
-			HighLogic.Skin.horizontalScrollbarLeftButton = horizontalScrollbarLeftButton;
-			HighLogic.Skin.horizontalScrollbarRightButton = horizontalScrollbarRightButton;
-			HighLogic.Skin.verticalScrollbar = verticalScrollbar;
-			HighLogic.Skin.verticalScrollbarThumb = verticalScrollbarThumb;
-			HighLogic.Skin.verticalScrollbarUpButton = verticalScrollbarUpButton;
-			HighLogic.Skin.verticalScrollbarDownButton = verticalScrollbarDownButton;
-			HighLogic.Skin.scrollView = scrollView;
-
-			HighLogic.Skin.font = mainFont;
-		}
-
+		/// <summary>
+		/// Do not use this function in your mod, as it overrides default unity skin
+		/// </summary>
 		internal static void OverrideUnity() {
 			GUI.skin.box = box;
 			GUI.skin.label = label;
@@ -431,6 +349,34 @@ namespace UIFramework
 			GUI.skin.scrollView = scrollView;
 
 			GUI.skin.font = mainFont;
+		}
+
+		/// <summary>
+		/// Overrides the KSP skin.
+		/// </summary>
+		internal static void OverrideKSP() {
+			HighLogic.Skin.box = box;
+			HighLogic.Skin.label = label;
+			HighLogic.Skin.textField = textField;
+			HighLogic.Skin.textArea = textArea;
+			HighLogic.Skin.button = button;
+			HighLogic.Skin.toggle = toggle;
+			HighLogic.Skin.window	= window;
+			HighLogic.Skin.horizontalSlider = horizontalSlider;
+			HighLogic.Skin.horizontalSliderThumb = horizontalSliderThumb;
+			HighLogic.Skin.verticalSlider = verticalSlider;
+			HighLogic.Skin.verticalSliderThumb = verticalSliderThumb;
+			HighLogic.Skin.horizontalScrollbar = horizontalScrollbar;
+			HighLogic.Skin.horizontalScrollbarThumb = horizontalScrollbarThumb;
+			HighLogic.Skin.horizontalScrollbarLeftButton = horizontalScrollbarLeftButton;
+			HighLogic.Skin.horizontalScrollbarRightButton = horizontalScrollbarRightButton;
+			HighLogic.Skin.verticalScrollbar = verticalScrollbar;
+			HighLogic.Skin.verticalScrollbarThumb = verticalScrollbarThumb;
+			HighLogic.Skin.verticalScrollbarUpButton = verticalScrollbarUpButton;
+			HighLogic.Skin.verticalScrollbarDownButton = verticalScrollbarDownButton;
+			HighLogic.Skin.scrollView = scrollView;
+
+			HighLogic.Skin.font = mainFont;
 		}
 	}
 }

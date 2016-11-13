@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * UI Framework licensed under BSD 3-clause license
+ * https://github.com/Real-Gecko/Unity5-UIFramework/blob/master/LICENSE.md
+*/
+
+using System;
 using UnityEngine;
 
 namespace UIFramework

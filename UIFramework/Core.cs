@@ -17,7 +17,7 @@ namespace UIFramework
 			get { return _instance; }
 		}
 
-		private bool skinInitialized = false;
+		static private bool skinInitialized = false;
 
 		public void Awake() {
 			if (_instance != null) {
@@ -37,8 +37,6 @@ namespace UIFramework
 				return;
 			Palette.InitPalette ();
 			Styles.InitStyles ();
-//			Styles.OverrideKSP ();
-//			Styles.OverrideUnity ();
 			skinInitialized = true;
 			Destroy (this); // Quit after initialized
 		}
